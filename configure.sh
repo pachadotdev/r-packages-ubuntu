@@ -1,5 +1,10 @@
 #!/bin/bash
 
+echo "This script will install R (if needed) and configure bspm on your system."
+
+# ask to continue or exit
+read -p "Do you want to continue? (y/n) " -n 1 -r
+
 # stop if not running as sudo
 if [ "$EUID" -ne 0 ]
   then echo "Please run as sudo"
