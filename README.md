@@ -35,3 +35,7 @@ After selecting "n", to install from binaries, R internally communicates with Ub
 ## Automatically update RStudio Desktop
 
 The script above configures an APT repository to my server pacha.dev, which offers the same stable RStudio version as rstudio.com. The advantage is that when the server is updated, when you run `apt update` it will offer a newer version that you can install with `apt upgrade`.
+
+## Does it work on Debian/Mint/Pop/etc?
+
+Yes.
