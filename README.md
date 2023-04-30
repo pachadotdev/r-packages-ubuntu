@@ -22,6 +22,7 @@ The command will ask you to install:
 2. R development tools (i.e, r-base-dev)
 3. Git
 4. RStudio Desktop from my PPA
+5. BSPM (R's Bridge to System Package Manager)
 
 You can use it on a fresh or existing setup.
 
@@ -56,3 +57,7 @@ In other words, the script enables `apt install rstudio`.
 ## Does it work on Debian/Mint/Pop/etc?
 
 Yes.
+
+## Can I audit the script?
+
+Yes, you can re-trace all the steps I followed here: https://github.com/pachadotdev/r-packages-ubuntu.
