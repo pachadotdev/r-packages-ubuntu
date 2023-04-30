@@ -1,4 +1,4 @@
-# r-packages-ubuntu
+# The Perfect Setup for Ubuntu and R
 
 ## About
 
