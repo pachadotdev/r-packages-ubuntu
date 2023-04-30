@@ -4,6 +4,10 @@
 
 Install R packages as you would do on Windows (i.e., no long compilation time). In addition, this script asks to install R development tools, Git and RStudio.
 
+## Motivation
+
+Just to save time for my future self. Hopefully, it can help people in the cyberspace too :)
+
 ## Instructions
 
 Just copy and paste this one-line command:
