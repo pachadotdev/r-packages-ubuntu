@@ -16,6 +16,15 @@ Just copy and paste this one-line command:
 sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/pachadotdev/r-packages-ubuntu/main/configure.sh)"
 ```
 
+The command will ask you to install:
+
+1. R
+2. R development tools (i.e, r-base-dev)
+3. Git
+4. RStudio Desktop from my PPA
+
+You can use it on a fresh or existing setup.
+
 ## Test if it worked
 
 When you reopen RStudio after running the script, you'll see an output like this:
@@ -40,7 +49,9 @@ One advantage of this approach is that it shall satisfy all dependencies (i.e., 
 
 ## Automatically update RStudio Desktop
 
-The script above configures an APT repository to my server pacha.dev, which offers the same stable RStudio version as rstudio.com. The advantage is that when the server is updated, when you run `apt update` it will offer a newer version that you can install with `apt upgrade`.
+The script above configures an APT repository to my server pacha.dev, which offers the same stable RStudio version as rstudio.com. The advantage is that when the server is updated and you run `apt update` it will offer a newer version that you can install with `apt upgrade`.
+
+In other words, the script enables `apt install rstudio`.
 
 ## Does it work on Debian/Mint/Pop/etc?
 
