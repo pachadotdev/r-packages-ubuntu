@@ -12,6 +12,8 @@ Just copy and paste this one-line command:
 sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/pachadotdev/r-packages-ubuntu/main/configure.sh)"
 ```
 
+## Test if it worked
+
 When you reopen RStudio after running the script, you'll see an output like this:
 
 ```r
