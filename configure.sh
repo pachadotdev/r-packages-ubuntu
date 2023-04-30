@@ -26,21 +26,47 @@ apt install python3-{dbus,gi,apt}
 # install R
 apt install r-base
 
+# ask if the user to install development tools
+
+echo "Do you want to install development tools (i.e, to build R packages)?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) apt install r-base-dev; break;;
+        No ) break;;
+    esac
+done
+
+echo "Do you want to install Git?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) apt install git; break;;
+        No ) break;;
+    esac
+done
+
+echo "Do you want to install RStudio?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) curl -sS https://apt.pacha.dev/pacha.gpg | gpg --dearmor | tee /etc/apt/trusted.gpg.d/pacha.gpg >/dev/null && echo "deb https://apt.pacha.dev ./" | tee /etc/apt/sources.list.d/pacha.list > /dev/null && apt update && apt install rstudio; break;;
+        No ) break;;
+    esac
+done
+
 # install bspm as a system package from CRAN
 Rscript -e 'install.packages("bspm", repos="https://cran.r-project.org")'
 
 # enable it system-wide
-# echo "bspm::enable()" | sudo tee -a /etc/R/Rprofile.site
+# echo "bspm::enable()" | tee -a /etc/R/Rprofile.site
 
 # enable it for the user
-# echo "bspm::enable()" | sudo tee -a ~/Rprofile.site
+# echo "bspm::enable()" | tee -a ~/Rprofile.site
 
 # ask the user to chose between a system-wide or user-wide activation
 echo "Do you want to enable bspm system-wide (all users) or user-wide (only you)?"
 select yn in "System-wide" "User-wide"; do
     case $yn in
-        "System-wide" ) echo "bspm::enable()" | sudo tee -a /etc/R/Rprofile.site; break;;
-        "User-wide" ) echo "bspm::enable()" | sudo tee -a ~/Rprofile.site; break;;
+        "System-wide" ) echo "bspm::enable()" | tee -a /etc/R/Rprofile.site; break;;
+        "User-wide" ) echo "bspm::enable()" | tee -a ~/Rprofile.site; break;;
     esac
 done
 
