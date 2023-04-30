@@ -1,4 +1,4 @@
-# The Perfect Setup for Ubuntu and R
+# The Perfect Setup for Ubuntu and R (and how to install/update RStudio with apt install rstudio/apt update)
 
 ## About
 
