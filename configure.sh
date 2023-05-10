@@ -64,10 +64,18 @@ select yn in "Yes" "No"; do
     esac
 done
 
+echo "Is it ok to add apt.pacha.dev as a source for RStudio and/or Quarto?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) curl -sS https://apt.pacha.dev/pacha.gpg | gpg --dearmor | tee /etc/apt/trusted.gpg.d/pacha.gpg >/dev/null && echo "deb https://apt.pacha.dev ./" | tee /etc/apt/sources.list.d/pacha.list > /dev/null && apt update; break;;
+        No ) break;;
+    esac
+done
+
 echo "Do you want to install RStudio Desktop Stable Edition?"
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) curl -sS https://apt.pacha.dev/pacha.gpg | gpg --dearmor | tee /etc/apt/trusted.gpg.d/pacha.gpg >/dev/null && echo "deb https://apt.pacha.dev ./" | tee /etc/apt/sources.list.d/pacha.list > /dev/null && apt update && apt install rstudio; break;;
+        Yes ) apt install rstudio; break;;
         No ) break;;
     esac
 done
@@ -83,7 +91,7 @@ done
 echo "Do you want to install Quarto?"
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) curl -sS https://apt.pacha.dev/pacha.gpg | gpg --dearmor | tee /etc/apt/trusted.gpg.d/pacha.gpg >/dev/null && echo "deb https://apt.pacha.dev ./" | tee /etc/apt/sources.list.d/pacha.list > /dev/null && apt update && apt install Quarto; break;;
+        Yes ) apt install quarto; break;;
         No ) break;;
     esac
 done
