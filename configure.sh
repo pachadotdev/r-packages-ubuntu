@@ -80,6 +80,14 @@ select yn in "Yes" "No"; do
     esac
 done
 
+echo "Do you want to install Quarto?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) curl -sS https://apt.pacha.dev/pacha.gpg | gpg --dearmor | tee /etc/apt/trusted.gpg.d/pacha.gpg >/dev/null && echo "deb https://apt.pacha.dev ./" | tee /etc/apt/sources.list.d/pacha.list > /dev/null && apt update && apt install Quarto; break;;
+        No ) break;;
+    esac
+done
+
 # install bspm as a system package from CRAN
 
 echo "Do you want to install bspm to install binary R packages?"
