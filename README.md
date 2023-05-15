@@ -2,7 +2,7 @@
 
 ## About
 
-Install R packages as you would do on Windows (i.e., no long compilation time). In addition, this script asks to install R development tools, Git and RStudio.
+Install R packages as you would do on Windows (i.e., no long compilation time). In addition, this script asks to install R development tools, Git, RStudio, and Quarto.
 
 ## Motivation
 
