@@ -21,8 +21,9 @@ The command will ask you to install:
 1. R
 2. R development tools (i.e, r-base-dev)
 3. Git
-4. RStudio Desktop from my PPA
-5. BSPM (R's Bridge to System Package Manager)
+4. RStudio Desktop (stable or daily build)
+5. Quarto
+6. BSPM (R's Bridge to System Package Manager)
 
 You can use it on a fresh or existing setup.
 
