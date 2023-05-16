@@ -101,7 +101,7 @@ done
 echo "Do you want to install bspm to install binary R packages?"
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) apt install python3-{dbus,gi,apt} && Rscript -e 'install.packages("bspm", repos="https://cran.r-project.org")'; break;;
+        Yes ) apt install python3-{dbus,gi,apt} r-cran-bspm; break;;
         No ) break;;
     esac
 done
