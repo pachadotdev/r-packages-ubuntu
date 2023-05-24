@@ -62,3 +62,11 @@ Yes.
 ## Can I audit the script?
 
 Yes, you can re-trace all the steps I followed here: https://github.com/pachadotdev/r-packages-ubuntu.
+
+## Notes to myself
+
+I have to run `01-sync-server.sh` twice when updating the RStudio daily build, otherwise `apt udpate` says
+
+```bash
+W: Skipping acquire of configured file 'Packages' as repository 'https://apt-daily.pacha.dev ./ InRelease' does not seem to provide it (sources.list entry misspelt?)
+```
