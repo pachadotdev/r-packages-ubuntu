@@ -71,7 +71,7 @@ Yes, you can re-trace all the steps I followed here: https://github.com/pachadot
 
 Tested from a graphic environment (Cinnamon). I opened a terminal and pasted the command from the instruction at the start of this README.
 
-### PopOs - Works ✅
+### Pop OS 22.04 LTS NVIDIA - Works ✅
 
 According to [#4](https://github.com/pachadotdev/r-packages-ubuntu/issues/4), it works. I am awaiting details from @rishieco.
 
