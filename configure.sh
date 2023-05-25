@@ -12,7 +12,8 @@ if [ "$EUID" -ne 0 ]
 fi
 
 # add an updated R source to the system manager
-echo "\nDo you want to add the official CRAN R repository?"
+echo ""
+echo "Do you want to add the official CRAN R repository?"
 select yn in "Yes" "No"; do
     case $yn in
         Yes ) add-apt-repository ppa:marutter/rrutter4.0 && apt update; break;;
@@ -83,7 +84,7 @@ done
 echo "Do you want to install RStudio Desktop Daily Build?"
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) curl -sS https://apt-daily.pacha.dev/pacha.gpg | gpg --dearmor | tee /etc/apt/trusted.gpg.d/pacha.gpg >/dev/null && echo "deb https://apt-daily.pacha.dev ./" | tee /etc/apt/sources.list.d/pacha-daily.list > /dev/null && apt update && apt install rstudio; break;;
+        Yes ) apt install gnupg && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FD3445D533FF12B2 && curl -sS https://apt-daily.pacha.dev/pacha.gpg | gpg --dearmor | tee /etc/apt/trusted.gpg.d/pacha.gpg >/dev/null && echo "deb https://apt-daily.pacha.dev ./" | tee /etc/apt/sources.list.d/pacha-daily.list > /dev/null && apt update && apt install rstudio; break;;
         No ) break;;
     esac
 done

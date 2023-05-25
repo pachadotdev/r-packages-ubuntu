@@ -3,3 +3,4 @@ apt-repo-daily
 pgp-key.public
 pgp-key.private
 pgpkeys*
+rstudioapt-pgp-key.batch
