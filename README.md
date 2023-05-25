@@ -16,6 +16,8 @@ Just copy and paste this one-line command:
 sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/pachadotdev/r-packages-ubuntu/main/configure.sh)"
 ```
 
+If you are on Ubuntu 22.10 or higher, the script will detect it and exit. This is because the official R sources are not compatible with those versions yet.
+
 The command will ask you to install:
 
 1. R
