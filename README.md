@@ -63,10 +63,47 @@ Yes.
 
 Yes, you can re-trace all the steps I followed here: https://github.com/pachadotdev/r-packages-ubuntu.
 
-## Notes to myself
+## Tested platforms
 
-I have to run `01-sync-server.sh` twice when updating the RStudio daily build, otherwise `apt udpate` says
+### Linux Mint 21.1 (Vera) - Works ✅
+
+Tested from a graphic environment (Cinnamon). I opened a terminal and pasted the command from the instruction at the start of this README.
+
+### PopOs - Works ✅
+
+According to [#4](https://github.com/pachadotdev/r-packages-ubuntu/issues/4), it works. I am awaiting details from @rishieco.
+
+### Ubuntu 20.04 (Focal) - Works ✅
+
+Tested in a Docker container.
+
+From my laptop I run this, but you don't need to install `wget` and the rest of dependencies in a "real" Ubuntu 22.10:
 
 ```bash
-W: Skipping acquire of configured file 'Packages' as repository 'https://apt-daily.pacha.dev ./ InRelease' does not seem to provide it (sources.list entry misspelt?)
+~ $ docker run -it ubuntu:22.10
+root@c7ed22bee36e:/# apt update && apt install wget software-properties-common gnupg
+root@c7ed22bee36e:/# bash -c "$(wget -qO- https://raw.githubusercontent.com/pachadotdev/r-packages-ubuntu/main/configure.sh)"
 ```
+
+### Ubuntu 22.04 (Jammy) - Works ✅
+
+The test is implicit because Linux Mint 21.1 is based on this version.
+
+### Ubuntu 22.10 (Kinetic) - Fails ❎
+
+Tested in a Docker container.
+
+There is no Release file for `kinetic` in the official R sources, so it does not work.
+
+### Ubuntu 23.04 (Lunar) - Fails ❎
+
+Same reason as 22.10.
+
+## Reported perks
+
+On Ubuntu 22.04 Desktop, when you install a package and R asks "Do you prefer later versions from sources? (Yes/no/cancel)" you should select "yes" or it gets stuck. I could not replicate this with Docker See [#4](https://github.com/pachadotdev/r-packages-ubuntu/issues/4).
+
+## Notes to myself
+
+- [ ] Go to the commented PGP part in `01-sync-server.sh` every 30 days to renew the key
+- [ ] Update the public key in `configure.sh` (where it says "Is it ok to add apt.pacha.dev as a source for RStudio and/or Quarto?")
