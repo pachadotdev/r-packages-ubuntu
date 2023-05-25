@@ -65,48 +65,46 @@ cd apt-repo-daily && bash ../02-generate-release.sh > Release && dpkg-scanpackag
 
 # # SIGN ----
 
-# create GPG key
-echo "%echo Generating a PGP key
-Key-Type: RSA
-Key-Length: 4096
-Name-Real: Pacha
-Name-Email: m.sepulveda@mail.utoronto.ca
-Expire-Date: 0
-%no-ask-passphrase
-%no-protection
-%commit" > /tmp/rstudio-pgp-key.batch
+# create a GPG key, I set this to expire in 30 days
 
-export GNUPGHOME="$(mktemp -d pgpkeys-XXXXXX)"
+# echo "%echo Generating an example PGP key
+# Key-Type: RSA
+# Key-Length: 4096
+# Name-Real: Pacha
+# Name-Email: m.sepulveda@mail.utoronto.ca
+# Expire-Date: 30
+# %no-ask-passphrase
+# %no-protection
+# %commit" > ~/github/r-packages-ubuntu/rstudioapt-pgp-key.batch
 
-gpg --no-tty --batch --gen-key /tmp/rstudio-pgp-key.batch
+# export GNUPGHOME="$(mktemp -d ~/github/r-packages-ubuntu/pgpkeys-XXXXXX)"
+
+# gpg --no-tty --batch --gen-key ~/github/r-packages-ubuntu/rstudioapt-pgp-key.batch
+
 # ls "$GNUPGHOME/private-keys-v1.d"
-# gpg --list-keys
 
-# don't run this twice!
-# gpg --armor --export Pacha > pgp-key.public
-# cat pgp-key.public | gpg --list-packets
+# gpg --armor --export Pacha > ~/github/r-packages-ubuntu/pgp-key.public
 
-# gpg --armor --export-secret-keys Pacha > pgp-key.private
-# add this to the .gitignore file
-# echo "pgp-key.private" >> .gitignore
-# git add .gitignore
+# cat ~/github/r-packages-ubuntu/pgp-key.public | gpg --list-packets
 
-# upload the public key to http://keyserver.ubuntu.com/#submitKey
+# gpg --armor --export-secret-keys Pacha > ~/github/r-packages-ubuntu/pgp-key.private
 
-export GNUPGHOME="$(mktemp -d pgpkeys-XXXXXX)"
-# gpg --list-keys
+export GNUPGHOME="$(mktemp -d ~/github/r-packages-ubuntu/pgpkeys-XXXXXX)"
+gpg --list-keys
+cat ~/github/r-packages-ubuntu/pgp-key.private | gpg --import
+gpg --list-keys
 
-cat pgp-key.private | gpg --import
 cat apt-repo/Release | gpg --default-key Pacha -abs > apt-repo/Release.gpg
 cat apt-repo/Release | gpg --default-key Pacha -abs --clearsign > apt-repo/InRelease
-
-cat pgp-key.private | gpg --import
 cat apt-repo-daily/Release | gpg --default-key Pacha -abs > apt-repo-daily/Release.gpg
 cat apt-repo-daily/Release | gpg --default-key Pacha -abs --clearsign > apt-repo-daily/InRelease
 
 # copy the public key to apt-repo
 cp pgp-key.public apt-repo/pacha.gpg
 cp pgp-key.public apt-repo-daily/pacha.gpg
+
+# add to http://keyserver.ubuntu.com/
+cat pgp-key.public
 
 # copy the dirs to the server
 

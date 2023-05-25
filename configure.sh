@@ -12,7 +12,7 @@ if [ "$EUID" -ne 0 ]
 fi
 
 # add an updated R source to the system manager
-echo "Do you want to add the official CRAN R repository?"
+echo "\nDo you want to add the official CRAN R repository?"
 select yn in "Yes" "No"; do
     case $yn in
         Yes ) add-apt-repository ppa:marutter/rrutter4.0 && apt update; break;;
@@ -67,7 +67,7 @@ done
 echo "Is it ok to add apt.pacha.dev as a source for RStudio and/or Quarto?"
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) curl -sS https://apt.pacha.dev/pacha.gpg | gpg --dearmor | tee /etc/apt/trusted.gpg.d/pacha.gpg >/dev/null && echo "deb https://apt.pacha.dev ./" | tee /etc/apt/sources.list.d/pacha.list > /dev/null && apt update; break;;
+        Yes ) apt install gnupg && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FD3445D533FF12B2 && curl -sS https://apt.pacha.dev/pacha.gpg | gpg --dearmor | tee /etc/apt/trusted.gpg.d/pacha.gpg >/dev/null && echo "deb https://apt.pacha.dev ./" | tee /etc/apt/sources.list.d/pacha.list > /dev/null && apt update; break;;
         No ) break;;
     esac
 done
