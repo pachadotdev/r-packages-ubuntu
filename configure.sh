@@ -5,6 +5,14 @@ echo "This script will install R (if needed) and configure bspm on your system."
 # ask to continue or exit
 read -p "Do you want to continue? (y/n) " -n 1 -r
 
+osversion=$(lsb_release -cs)
+
+# if osversion is kinetic or lunar, exit
+if [ "$osversion" == "kinetic" ] || [ "$osversion" == "lunar" ]; then
+    echo "Your OS version is $osversion. The current R sources are not compatible with it."
+    exit
+fi
+
 # stop if not running as sudo
 if [ "$EUID" -ne 0 ]
   then echo "Please run as sudo"
