@@ -107,5 +107,6 @@ On Ubuntu 22.04 Desktop, when you install a package and R asks "Do you prefer la
 
 ## Notes to myself
 
-- [ ] Go to the commented PGP part in `01-sync-server.sh` every 30 days to renew the key
-- [ ] Update the public key in `configure.sh` (where it says "Is it ok to add apt.pacha.dev as a source for RStudio and/or Quarto?")
+- [x] Go to the commented PGP part in `01-sync-server.sh` every 180 days to renew the key (done on 2023-06-24)
+- [x] Update the public key in `configure.sh` because of apt-key deprecation (where it says "Is it ok to add apt.pacha.dev as a source for RStudio and/or Quarto?")
+- [ ] Correct why I must run `01-sync-server.sh` twice to remove the message `W: Skipping acquire of configured file 'Packages' as repository 'https://apt.pacha.dev ./ InRelease' does not seem to provide it (sources.list entry misspelt?)` with `apt update`.

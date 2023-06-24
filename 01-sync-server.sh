@@ -50,10 +50,28 @@ if [ ! -f $file ]; then
     curl -s -o $file $fileurl
 fi
 
+# RSTUDIO SERVER ----
+
+fileurl="https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2023.03.1-446-amd64.deb"
+
+# file="rstudio-desktop.deb"
+# prune the url to get the file name
+file=$(basename $fileurl)
+
+# paste apt-repo/pool/main/ to the file name
+file="apt-repo/$file"
+
+mkdir -p apt-repo/
+
+# if the file is not already downloaded, download it
+if [ ! -f $file ]; then
+    curl -s -o $file $fileurl
+fi
+
 # QUARTO ----
 
-fileurl="https://objects.githubusercontent.com/github-production-release-asset-2e65be/298579934/3d552f6f-32fb-4d17-91ca-a5436254b886?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230510%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230510T190926Z&X-Amz-Expires=300&X-Amz-Signature=b7ab8e2886eaf5fd41cad9bbdceb799c624d06b7a9e000abd94cac10fe2b4717&X-Amz-SignedHeaders=host&actor_id=10091065&key_id=0&repo_id=298579934&response-content-disposition=attachment%3B%20filename%3Dquarto-1.3.340-linux-amd64.deb&response-content-type=application%2Foctet-stream"
-file="apt-repo/quarto-1.3.340-linux-amd64.deb"
+fileurl="https://objects.githubusercontent.com/github-production-release-asset-2e65be/298579934/f22a5ebb-8fd9-40a1-95b4-f26ba3844e94?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230624%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230624T213026Z&X-Amz-Expires=300&X-Amz-Signature=b4ce5c6ee27c1f0c38befaee1867c042082effc06ab6d8437991a4f7c85d185f&X-Amz-SignedHeaders=host&actor_id=10091065&key_id=0&repo_id=298579934&response-content-disposition=attachment%3B%20filename%3Dquarto-1.3.427-linux-amd64.deb&response-content-type=application%2Foctet-stream"
+file="apt-repo/quarto-1.3.427-linux-amd64.deb"
 if [ ! -f $file ]; then
     curl -s -o $file $fileurl
 fi
@@ -65,28 +83,27 @@ cd apt-repo-daily && bash ../02-generate-release.sh > Release && dpkg-scanpackag
 
 # # SIGN ----
 
-# create a GPG key, I set this to expire in 30 days
-
+# # create a GPG key, I set this to expire in 180 days
 # echo "%echo Generating an example PGP key
 # Key-Type: RSA
 # Key-Length: 4096
 # Name-Real: Pacha
 # Name-Email: m.sepulveda@mail.utoronto.ca
-# Expire-Date: 30
+# Expire-Date: 180
 # %no-ask-passphrase
 # %no-protection
 # %commit" > ~/github/r-packages-ubuntu/rstudioapt-pgp-key.batch
-
+#
 # export GNUPGHOME="$(mktemp -d ~/github/r-packages-ubuntu/pgpkeys-XXXXXX)"
-
+#
 # gpg --no-tty --batch --gen-key ~/github/r-packages-ubuntu/rstudioapt-pgp-key.batch
-
+#
 # ls "$GNUPGHOME/private-keys-v1.d"
-
+#
 # gpg --armor --export Pacha > ~/github/r-packages-ubuntu/pgp-key.public
-
+#
 # cat ~/github/r-packages-ubuntu/pgp-key.public | gpg --list-packets
-
+#
 # gpg --armor --export-secret-keys Pacha > ~/github/r-packages-ubuntu/pgp-key.private
 
 export GNUPGHOME="$(mktemp -d ~/github/r-packages-ubuntu/pgpkeys-XXXXXX)"
@@ -103,10 +120,16 @@ cat apt-repo-daily/Release | gpg --default-key Pacha -abs --clearsign > apt-repo
 cp pgp-key.public apt-repo/pacha.gpg
 cp pgp-key.public apt-repo-daily/pacha.gpg
 
+# DEPRECATED :(
 # add to http://keyserver.ubuntu.com/
-cat pgp-key.public
+# cat pgp-key.public
+
+# save pgp-key.public as pacha_pubkey.asc
+cp pgp-key.public apt_pacha_pubkey.asc
 
 # copy the dirs to the server
 
 rsync -av --update --exclude='.git' apt-repo/ pacha@tradestatistics.io:~/apt-repo/
 rsync -av --update --exclude='.git' apt-repo-daily/ pacha@tradestatistics.io:~/apt-repo-daily/
+
+rsync -av --update apt_pacha_pubkey.asc pacha@tradestatistics.io:~/apt-repo/apt_pacha_pubkey.asc
