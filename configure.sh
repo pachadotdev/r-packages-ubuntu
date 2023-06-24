@@ -93,7 +93,7 @@ done
 echo "Do you want to install RStudio Desktop Daily Build?"
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) wget -qO- https://apt.pacha.dev/pacha_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/apt_pacha_pubkey.asc && echo "deb https://apt-daily.pacha.dev ./" | tee /etc/apt/sources.list.d/pacha-daily.list > /dev/null && apt update && apt install rstudio; break;;
+        Yes ) apt install gnupg wget && wget -qO- https://apt.pacha.dev/pacha_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/apt_pacha_pubkey.asc && echo "deb https://apt-daily.pacha.dev ./" | tee /etc/apt/sources.list.d/pacha-daily.list > /dev/null && apt update && apt install rstudio; break;;
         No ) break;;
     esac
 done
