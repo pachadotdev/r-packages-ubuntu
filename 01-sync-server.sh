@@ -70,8 +70,8 @@ fi
 
 # QUARTO ----
 
-fileurl="https://objects.githubusercontent.com/github-production-release-asset-2e65be/298579934/f22a5ebb-8fd9-40a1-95b4-f26ba3844e94?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230624%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230624T213026Z&X-Amz-Expires=300&X-Amz-Signature=b4ce5c6ee27c1f0c38befaee1867c042082effc06ab6d8437991a4f7c85d185f&X-Amz-SignedHeaders=host&actor_id=10091065&key_id=0&repo_id=298579934&response-content-disposition=attachment%3B%20filename%3Dquarto-1.3.427-linux-amd64.deb&response-content-type=application%2Foctet-stream"
-file="apt-repo/quarto-1.3.427-linux-amd64.deb"
+fileurl="https://objects.githubusercontent.com/github-production-release-asset-2e65be/298579934/58704c00-81b3-4b69-a282-5f3a4ebba3a3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230718%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230718T151044Z&X-Amz-Expires=300&X-Amz-Signature=516ac29edc679fe22e90114c70ff205ae882a296e321d9520f52d64df3b9c4c7&X-Amz-SignedHeaders=host&actor_id=10091065&key_id=0&repo_id=298579934&response-content-disposition=attachment%3B%20filename%3Dquarto-1.3.433-linux-amd64.deb&response-content-type=application%2Foctet-stream"
+file="apt-repo/quarto-1.3.433-linux-amd64.deb"
 if [ ! -f $file ]; then
     curl -s -o $file $fileurl
 fi

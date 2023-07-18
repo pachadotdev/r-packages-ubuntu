@@ -76,8 +76,7 @@ done
 echo "Is it ok to add apt.pacha.dev as a source for RStudio and/or Quarto?"
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) apt install gnupg wget && wget -qO- https://apt.pacha.dev/pacha_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/apt_pacha_pubkey.asc
- && echo "deb https://apt.pacha.dev ./" | tee /etc/apt/sources.list.d/pacha.list > /dev/null && apt update; break;;
+        Yes ) apt install gnupg wget && wget -qO- https://apt.pacha.dev/pacha_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/apt_pacha_pubkey.asc && echo "deb https://apt.pacha.dev ./" | tee /etc/apt/sources.list.d/pacha.list > /dev/null && apt update; break;;
         No ) break;;
     esac
 done
