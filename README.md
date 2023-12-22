@@ -16,6 +16,8 @@ Just copy and paste this one-line command:
 sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/pachadotdev/r-packages-ubuntu/main/configure.sh)"
 ```
 
+If you get an error such as `E: The repository 'https://apt.pacha.dev ./ InRelease' is not signed.`, please run the configuration script again. It will add the updated public key.
+
 If you are on Ubuntu 22.10 or higher, the script will detect it and exit. This is because the official R sources are not compatible with those versions yet.
 
 The command will ask you to install:

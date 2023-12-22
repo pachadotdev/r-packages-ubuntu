@@ -34,7 +34,7 @@ fi
 
 # stable
 
-fileurl="https://download1.rstudio.org/electron/jammy/amd64/rstudio-2023.03.0-386-amd64.deb"
+fileurl="https://download1.rstudio.org/electron/jammy/amd64/rstudio-2023.12.0-369-amd64.deb"
 
 # file="rstudio-desktop.deb"
 # prune the url to get the file name
@@ -52,7 +52,7 @@ fi
 
 # RSTUDIO SERVER ----
 
-fileurl="https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2023.03.1-446-amd64.deb"
+fileurl="https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2023.12.0-369-amd64.deb "
 
 # file="rstudio-desktop.deb"
 # prune the url to get the file name
@@ -70,8 +70,8 @@ fi
 
 # QUARTO ----
 
-fileurl="https://objects.githubusercontent.com/github-production-release-asset-2e65be/298579934/58704c00-81b3-4b69-a282-5f3a4ebba3a3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230718%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230718T151044Z&X-Amz-Expires=300&X-Amz-Signature=516ac29edc679fe22e90114c70ff205ae882a296e321d9520f52d64df3b9c4c7&X-Amz-SignedHeaders=host&actor_id=10091065&key_id=0&repo_id=298579934&response-content-disposition=attachment%3B%20filename%3Dquarto-1.3.433-linux-amd64.deb&response-content-type=application%2Foctet-stream"
-file="apt-repo/quarto-1.3.433-linux-amd64.deb"
+fileurl="https://objects.githubusercontent.com/github-production-release-asset-2e65be/298579934/957f3999-19cf-4d88-a03e-ca0df8126554?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231222%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231222T223720Z&X-Amz-Expires=300&X-Amz-Signature=fa81df247aef7e9f80b6cef3baf1b0e6e91e3e1dc1cd8306bf7b7dcffd8b7eb8&X-Amz-SignedHeaders=host&actor_id=10091065&key_id=0&repo_id=298579934&response-content-disposition=attachment%3B%20filename%3Dquarto-1.3.450-linux-amd64.deb&response-content-type=application%2Foctet-stream"
+file="apt-repo/quarto-1.3.450-linux-amd64.deb"
 if [ ! -f $file ]; then
     curl -s -o $file $fileurl
 fi
@@ -89,7 +89,7 @@ cd apt-repo-daily && bash ../02-generate-release.sh > Release && dpkg-scanpackag
 # Key-Length: 4096
 # Name-Real: Pacha
 # Name-Email: m.sepulveda@mail.utoronto.ca
-# Expire-Date: 180
+# Expire-Date: 365
 # %no-ask-passphrase
 # %no-protection
 # %commit" > ~/github/r-packages-ubuntu/rstudioapt-pgp-key.batch

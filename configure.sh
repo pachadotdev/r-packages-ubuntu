@@ -76,7 +76,7 @@ done
 echo "Is it ok to add apt.pacha.dev as a source for RStudio and/or Quarto?"
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) apt install gnupg wget && wget -qO- https://apt.pacha.dev/pacha_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/apt_pacha_pubkey.asc && echo "deb https://apt.pacha.dev ./" | tee /etc/apt/sources.list.d/pacha.list > /dev/null && apt update; break;;
+        Yes ) rm /etc/apt/sources.list.d/pacha.list && rm /etc/apt/trusted.gpg.d/apt_pacha_pubkey.asc && apt update && apt install gnupg wget && wget -qO- https://apt.pacha.dev/apt_pacha_pubkey.asc | tee /etc/apt/trusted.gpg.d/apt_pacha_pubkey.asc && echo "deb https://apt.pacha.dev ./" | tee /etc/apt/sources.list.d/pacha.list > /dev/null && apt update; break;;
         No ) break;;
     esac
 done
@@ -92,7 +92,7 @@ done
 echo "Do you want to install RStudio Desktop Daily Build?"
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) apt install gnupg wget && wget -qO- https://apt.pacha.dev/pacha_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/apt_pacha_pubkey.asc && echo "deb https://apt-daily.pacha.dev ./" | tee /etc/apt/sources.list.d/pacha-daily.list > /dev/null && apt update && apt install rstudio; break;;
+        Yes ) rm /etc/apt/sources.list.d/pacha-daily.list && apt update && apt install gnupg wget && wget -qO- https://apt.pacha.dev/apt_pacha_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/apt_pacha_pubkey.asc && echo "deb https://apt-daily.pacha.dev ./" | tee /etc/apt/sources.list.d/pacha-daily.list > /dev/null && apt update && apt install rstudio; break;;
         No ) break;;
     esac
 done
